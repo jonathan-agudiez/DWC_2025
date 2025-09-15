@@ -12,28 +12,28 @@
 
 /*** Declaración de funciones declaración */
 
-/* function doblar(num1) {
+function doblar(num1) {
   var res = num1 * 2;
   return `El resultado es ${res}`;
 }
 
-console.log(doblar(151)); */
+console.log(doblar(151));
 
 /*** Parámetros predeterminados */
 
-/* function saludar(persona = "Amigo") {
+function saludar(persona = "Amigo") {
   return `¡Hola ${persona}!`;
 }
 
-console.log(saludar()); */
+console.log(saludar());
 
 /*** Funciones como parámetro */
 
-/* function alpha(num, fun) {
+function alpha(num, fun) {
   return fun(num);
 }
 
-console.log(alpha(50, doblar)); */
+console.log(alpha(50, doblar));
 
 /*** Hoisting en funciones */
 
@@ -41,39 +41,42 @@ console.log(alpha(50, doblar)); */
 
 /*** Funciones anónimas (expresión) */
 
-/* const feo = function (num1, num2) {
+const feo = function (num1, num2) {
   return num1 + num2;
 };
 console.log(typeof feo);
 console.log(feo);
-console.log(feo(5, 7)); */
+console.log(feo(5, 5));
 
 //Se usan en la definición de métodos de los objetos.
 
 //Otro uso de la funciones anónimas (como parámetros)
 
-/* var beta = alpha(5, function (num) {
+var beta = alpha(5, function (num) {
   return num * 2;
 });
 
-console.log(`El valor de beta es ${beta}`); */
+console.log(`El valor de beta es ${beta}`);
 
 /*** Constructor de funciones con funciones anónimas*/
 
 /*** Funciones flecha (usadas como callbacks, no como métodos) */
 
-/* function potencia(num) {
+const potencia = (num) => {
   return num ** 3;
-} */
+};
 
 /*** El pseudoarray (objeto iterable) arguments */
 
-/* function sumarB() {
-  var total = 0;
-  for (var i = 0; i < arguments.length; i++) {
+function sumarB() {
+  let total = 0;
+  let arrayFeo = [4, 5, 4, 7];
+  for (let i = 0; i < arguments.length; i++) {
     total += arguments[i];
   }
+  /* console.log(arrayFeo);
+  console.log(arguments); */
   return total;
-} */
+}
 
-/* console.log(sumarB(4, 5, 4, 7));*/
+console.log(sumarB(4, 5, 4, 7, 12, 13, 34, 56));
