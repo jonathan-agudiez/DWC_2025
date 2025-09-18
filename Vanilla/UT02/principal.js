@@ -17,7 +17,7 @@ function doblar(num1) {
   return `El resultado es ${res}`;
 }
 
-console.log(doblar(151));
+// console.log(doblar(151));
 
 /*** Parámetros predeterminados */
 
@@ -25,7 +25,7 @@ function saludar(persona = "Amigo") {
   return `¡Hola ${persona}!`;
 }
 
-console.log(saludar());
+//console.log(saludar());
 
 /*** Funciones como parámetro */
 
@@ -33,7 +33,7 @@ function alpha(num, fun) {
   return fun(num);
 }
 
-console.log(alpha(50, doblar));
+//console.log(alpha(50, doblar));
 
 /*** Hoisting en funciones */
 
@@ -44,9 +44,9 @@ console.log(alpha(50, doblar));
 const feo = function (num1, num2) {
   return num1 + num2;
 };
-console.log(typeof feo);
-console.log(feo);
-console.log(feo(5, 5));
+//console.log(typeof feo);
+//console.log(feo);
+//console.log(feo(5, 5));
 
 //Se usan en la definición de métodos de los objetos.
 
@@ -56,7 +56,7 @@ var beta = alpha(5, function (num) {
   return num * 2;
 });
 
-console.log(`El valor de beta es ${beta}`);
+//console.log(`El valor de beta es ${beta}`);
 
 /*** Constructor de funciones con funciones anónimas*/
 
@@ -79,4 +79,7 @@ function sumarB() {
   return total;
 }
 
-console.log(sumarB(4, 5, 4, 7, 12, 13, 34, 56));
+//console.log(sumarB(4, 5, 4, 7, 12, 13, 34, 56));
+
+
+export { sumarB }
