@@ -22,7 +22,6 @@ function modulo(num1,num2){
 }
 
 
-// Importante: Al ser String los signos deben de ir "".
 function calcular(num1,num2,signo){
 
     if(num1 % 1 == 0 && num2 % 1 == 0){
@@ -34,13 +33,13 @@ function calcular(num1,num2,signo){
                 break;
             case "*": return console.log(`${num1} * ${num2} = ${multi(num1,num2)}`);
                 break;
-            case "/":   if (num2 === 0) { 
+            case "/":   if (num2 === 0) {   // num1 / 0 = Error
                             console.log(`No se puede dividir entre 0.`);    
                             return;
                         }
                         return console.log(`${num1} / ${num2} = ${division(num1,num2)}`);
                         break;
-            case "%":   if (num2 === 0){
+            case "%":   if (num2 === 0){    // num1 % 0 = Error
                             console.log(`No se puede hacer modulo por cero.`);
                             return;
                         }

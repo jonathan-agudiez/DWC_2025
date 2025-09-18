@@ -5,8 +5,12 @@ function media(num1,num2) {
     let total = 0;
     let media = 0;
 
-    // Comprobamos si son enteros positivos
-    for(let i = 0; i < arguments.length; i++){
+    // Usamos arguments es un falso array de argumentos que hayamos colocado en la funcion.
+
+    // if() para comprobar entero positivo. Existe alternativa al if(): importar una de funcion de una biblioteca tipo "principal.js" (que no hemos creado en este ejercicio).
+
+    for(let i = 0; i < arguments.length; i++){      
+        
         if(arguments[i] > 0 && arguments[i] % 1 === 0 ){
             
             console.log(`${arguments[i]} es entero positivo.`);

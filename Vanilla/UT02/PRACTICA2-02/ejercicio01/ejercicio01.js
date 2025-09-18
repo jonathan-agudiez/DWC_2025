@@ -7,9 +7,9 @@ let numero = Number(prompt(`Escriba un numero del 1 al 12:`));
 let meses = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
 
 
-// Utilizo !isNaN para comprobar si numero correspone a un Number
+// Utilizo !isNaN para comprobar si numero correspone a un numero (es boolean)
 function numeroMes(numero, meses){
-    if (!isNaN(numero)){
+    if (!isNaN(numero)) {
         if(numero < 0 || numero > 12) {
             console.log(`El número está fuera del rango deseado (Entre 1 y 12).`); 
         } else {
