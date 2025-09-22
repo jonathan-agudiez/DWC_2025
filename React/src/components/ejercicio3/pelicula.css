@@ -1,0 +1,58 @@
+/*CSS sacado por IA ya que he tenido dificultades para cuadrar el contenido.*/
+
+.pelicula {
+  max-width: 800px;
+  display: grid;
+  grid-template-columns: 200px 1fr;   /* imagen | info */
+  grid-template-areas:
+    "poster info"
+    "elenco elenco";
+  gap: 1rem;
+  padding: 1.2rem 1.8rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  background: #fff; /* opcional: antes tenías rojo */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.peliculaImagen {
+  grid-area: poster;
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  border-radius: 0.75rem;
+  object-fit: cover;
+  border: 1px solid #e5e7eb;
+}
+
+.peliculaInfo {
+  grid-area: info;
+  /* clave en grid: permitir shrink/wrap */
+  min-width: 0;
+}
+
+.peliculaDirector{
+    font-size: 1.3rem;
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    margin: 0.3rem 0 1rem 0;
+}
+
+.peliculaElenco {
+  grid-area: elenco;
+  width: 100%;
+  /* clave en grid: permitir shrink/wrap */
+  min-width: 0;
+}
+
+/* Texto y título */
+.peliculaNombre { margin: 0; font-size: 1.8rem; font-weight: 600; color: #111827; }
+.peliculaResumen { margin: 0; line-height: 1.5; color: #374151; }
+
+/* Intérpretes a ancho completo sin desbordar */
+.peliculaElenco .interprete {
+  box-sizing: border-box; /* evita que border/padding sumen extra */
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 0.5rem;
+  overflow-wrap: anywhere; /* por si hay palabras/URLs largas */
+}
