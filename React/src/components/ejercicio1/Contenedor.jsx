@@ -2,8 +2,9 @@ import React from "react";
 
 import "./contenedor.css"; 
 
-export default function Contenedor({ children }) {
+function Contenedor({ children }) {
   return <section className="contenedor">{children}</section>;
 }
 
+export default Contenedor;
 

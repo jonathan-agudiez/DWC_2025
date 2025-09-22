@@ -6,7 +6,7 @@ import Bruce from "../../assets/img/Bruce_Willis.jpg"; // podia ponerlo en publi
 import Alan from "../../assets/img/Alan_Rickman.webp";
    
 
-export default function Ejercicio2() {
+function Ejercicio2() {
   return (
     <> 
       <h1>Ejercicio 2</h1>
@@ -28,3 +28,5 @@ export default function Ejercicio2() {
     </>
   );
 }
+
+export default Ejercicio2;

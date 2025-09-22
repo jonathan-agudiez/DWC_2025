@@ -1,7 +1,7 @@
 import React from "react";
 import "./interprete.css";
 
-export default function Interprete({ nombre, img, children }) {
+function Interprete({ nombre, img, children }) {
   return (
     <article className="interprete">
       <img
@@ -11,8 +11,10 @@ export default function Interprete({ nombre, img, children }) {
       />
       <div className="interpreteTexto">
         <h3 className="interpreteNombre">{nombre}</h3>
-        <p className="interpreteDescr">{children}</p>
+        <p className="interpreteDescr">{children}</p>     {/* Usamos Children */}
       </div>
     </article>
   );
 }
+
+export default Interprete;

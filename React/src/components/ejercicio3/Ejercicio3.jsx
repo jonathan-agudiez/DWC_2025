@@ -8,7 +8,7 @@ import Bruce from "../../assets/img/Bruce_Willis.jpg";
 import Alan from "../../assets/img/Alan_Rickman.webp";
 
 
-export default function(){
+function Ejercicio3(){
 
     return (
         <>
@@ -18,6 +18,7 @@ export default function(){
                 titulo="Jungla de Cristal"
                 img={dieHard}
                 director="John McTiernan"
+                cartela="https://ibb.co/zVmMPCtH"
                 resumen="Un policía de Nueva York viaja a Los Ángeles para pasar la Navidad con su esposa. Durante la fiesta en el rascacielos Nakatomi Plaza, unos terroristas liderados por Hans Gruber toman el edificio y McClane se convierte en la única esperanza de los rehenes."
                 >
                 <Interprete
@@ -37,3 +38,5 @@ export default function(){
         </>
     );
 }
+
+export default Ejercicio3;
