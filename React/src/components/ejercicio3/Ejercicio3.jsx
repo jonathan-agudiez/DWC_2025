@@ -3,7 +3,7 @@ import Contenedor from "../ejercicio1/Contenedor.jsx"; // Reutilizo el codigo Co
 import Interprete from "../ejercicio2/Interprete.jsx";
 import Pelicula from "./Pelicula.jsx";
 
-import dieHard from "../../assets/img/die-hard.jpg";
+import dieHard from "../../assets/img/die-hard.jpg";  // Importo las imagenes de assets en vez de de Public
 import Bruce from "../../assets/img/Bruce_Willis.jpg";
 import Alan from "../../assets/img/Alan_Rickman.webp";
 

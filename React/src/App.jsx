@@ -9,9 +9,9 @@ import Ejercicio3 from "./components/ejercicio3/Ejercicio3.jsx";
 export default function App() {
 
 return (
-// <Ejercicio1 />   // <---- Si deseas ver el ejercio02 o 03 comenta este.
+ <Ejercicio1 />   // <---- Si deseas ver el ejercio02 o 03 comenta este.
 // <Ejercicio2 />
-<Ejercicio3 />
+// <Ejercicio3 />
 
 );
 }
