@@ -6,7 +6,7 @@ function Ejercicio1() {
       <Contenedor>
         <h1>Ejercicio 1</h1>
         <p>
-         Hola soy un párrafo muy chulo. 
+         Hola, soy el children de Contenedor. 
         </p>
       </Contenedor>
   );
