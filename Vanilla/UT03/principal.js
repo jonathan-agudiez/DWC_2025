@@ -16,5 +16,8 @@ function calcularMedia() {
     return suma / arguments.length;
 }
 
-export { sumarParametros, calcularMedia };
+// El metodo para pasar la primera letra de minuscula a mayuscula
+const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
 
+
+export { sumarParametros, calcularMedia, capitalize };

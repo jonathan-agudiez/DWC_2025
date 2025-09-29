@@ -1,5 +1,5 @@
 "use strict";
-import { calcularMedia } from "../principal.js";
+import { calcularMedia, capitalize } from "../principal.js";
 
 /* Ejercicio 3 -
 Recorriendo (objetos)
@@ -26,7 +26,7 @@ Las impresiones deben hacerse debidamente formateadas. */
 
     
         // Métodos
-    calcularMedia: function() {     //  Función importada
+    calcularMedia: function() {     //  Función importada.
         return calcularMedia(this.notas.primera,this.notas.segunda,this.notas.tercera).toLocaleString("es-ES");
     },
     imprimirAficiones: function() {
@@ -37,26 +37,30 @@ Las impresiones deben hacerse debidamente formateadas. */
     imprimirInforme: function () {
         console.log("Informe del discente:");
 
-        for(let clave in this){     // Recorre cada clave : valor del Objeto discente
+        for(let clave in this){     // Recorre cada clave : valor del Objeto discente.
 
-            // Dejo fuera de for in las funciones
-            if (typeof this[clave] == "function") continue;
+            // Solo procesar si no es una función
+            if (typeof this[clave] !== "function") {
 
-            // Devuelve boolean si es un array con "clave:valor".
-            else if (Array.isArray(this[clave])) {
-                // Añade ", " para separar cada valor del array.
-                console.log(`${clave}: ${this[clave].join(", ")}`);
+                // Devuelve boolean si es un array con "clave:valor".
+                if (Array.isArray(this[clave])) {
+                    // Añade ", " para separar cada valor del array.
+                    console.log(`${capitalize(clave)}: ${this[clave].join(", ")}`);
 
-                // Si la clave es un objeto, imprime clave : subclave con for in
+                // Si la clave es un objeto, imprime clave : subclave con for in.
                 } else if (this[clave] && typeof this[clave] === "object") {
                     console.log(`Notas:`);
 
+                    // El método capitalize importado, pasa primera letra a mayúscula
                     for(let subclave in this[clave]){
-                        console.log(`${subclave}: ${this[clave][subclave]}`);
+                        console.log(`${capitalize(subclave)} evaluación: ${this[clave][subclave]}`);
                     }
 
-                    // Si clave no es ni un array, ni un objeto, imprime clave : valor
-                }   else console.log(`${clave}: ${this[clave]}`);
+                // Si clave no es ni un array, ni un objeto, imprime clave : valor.
+                } else {
+                    console.log(`${capitalize(clave)}: ${this[clave]}`);
+                }
+            }
         };
 
         console.log(`La nota media es: ${this.calcularMedia()}`);
@@ -64,5 +68,13 @@ Las impresiones deben hacerse debidamente formateadas. */
 }
 
 discente.imprimirInforme(); 
+
+/*
+Importante recordar:
+Array.isArray(array) para determinar si es o no un array.
+Método ".join(", ")" para separar los arrays con los elementos deseados.
+Método de principal.js "capitalize(string)" para pasar la primera letra a mayuscula.
+
+*/
 
 

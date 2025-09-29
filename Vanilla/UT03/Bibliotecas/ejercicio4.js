@@ -2,6 +2,7 @@
 
 import { discente } from "./ejercicio3.js";
 
+
 /* Ejercicio 4 -
 Modificando (objetos)
 Añade, al objeto "curso", un método denominado "matricular" que recibe un objeto "discente" (creado en el ejercicio anterior) y que los añade a la propiedad "alumnado" del objeto curso.
@@ -13,13 +14,12 @@ let curso = {
     anyo: 1989,
     descripcion: "El curso más dificil de Formación Profesional.",
     alumnado: [],
-    matricular: function (nuevoDiscente) {
+    matricular: function (nuevoDiscente) {  // Forma de incrementar el array con spread
         this.alumnado = [...this.alumnado, nuevoDiscente];
-        console.log(`El alumno ${nuevoDiscente.nombre} se ha matriculado en el curso de ${this.nombre}.`);
+        console.log(`El alumno ${nuevoDiscente.nombre} se ha matriculado en el ${this.nombre}.`);
     } 
 }
 
 curso.matricular(discente);
 console.log(curso.alumnado);
-
 
