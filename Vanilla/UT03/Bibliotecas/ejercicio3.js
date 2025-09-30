@@ -51,7 +51,7 @@ Las impresiones deben hacerse debidamente formateadas. */
                 } else if (this[clave] && typeof this[clave] === "object") {
                     console.log(`Notas:`);
 
-                    // El método capitalize importado, pasa primera letra a mayúscula
+                    // El método capitalize importado, pasa primera letra a mayúscula.
                     for(let subclave in this[clave]){
                         console.log(`${capitalize(subclave)} evaluación: ${this[clave][subclave]}`);
                     }

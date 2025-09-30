@@ -23,8 +23,6 @@ El contenido de esas funciones se debe mostrar por consola debidamente formatead
 
 
 
-
-
 // Punto 1: 
 
 // Esto se podría configurar con un formulario (inputs). De momento registro el usuario de forma manual a través de los parametros.
@@ -58,6 +56,7 @@ console.log(nuevoJSON);
 
 
 
+//----------------------------------------------------------------------------------------
 // Punto 2:
 
 // Función filtro boolean.
@@ -74,8 +73,73 @@ console.log(`Lista de usuarios mayores de edad: ${JSON.stringify(usuarioMayorEda
 
 
 
-// Punto 3:
+//----------------------------------------------------------------------------------------
+// Punto 3: Misma dinámica de filtrado que el punto 2. 
 
+// Función filtro boolean.
+const esCorreo = (correo) => typeof correo === "string" && correo.includes("@yahoo");
+
+// Se pasa el filtro con la funcion esCorreo y filter().
+function usuarioYahoo (lista){
+    lista = nuevaLista.filter(usuario => esCorreo(usuario.contacto.correoelectronico));
+    return lista;
+};
+
+
+// Se muestra el JSON en formato indentado (1 espacio).
+console.log(`Lista de usuarios con correo electrónico de Yahoo: ${JSON.stringify(usuarioYahoo(nuevaLista),null,1)}`);
+
+
+
+//----------------------------------------------------------------------------------------
+// Punto 4:
+
+// Función filtro boolean.
+const esClaroMayorEdadEspanya = (usuario) => {
+  return (
+    usuario.preferencias.tema === "claro" &&
+    usuario.preferencias.edad >= 18 &&
+    usuario.contacto.direccion.pais === "España"
+  );
+};
+
+
+// Se pasa el filtro con la funcion esCorreo y filter().
+function usuarioClaroMayorEdadEspanya (lista){
+    lista = nuevaLista.filter(usuario => esClaroMayorEdadEspanya(usuario));
+    return lista;
+};
+
+// Se muestra el JSON en formato indentado (1 espacio).
+console.log(`Lista de usuarios con tema claro, mayoría de edad y pais España: ${JSON.stringify(usuarioClaroMayorEdadEspanya(nuevaLista),null,1)}`);
+
+
+
+//----------------------------------------------------------------------------------------
+// Punto 5:
+// la antepenúltima que devuelva un array de usuarios a los que les falte algún dato en su ficha.
+
+// Función filtro boolean.
+const estaVacio = (valor) =>
+  valor === null || valor === undefined || (typeof valor === "string" && valor === "");
+
+
+
+
+const filtrarCamposVacios = (usuarios) => {
+let lista = [];
+for (let clave in usuarios){
+
+    let valor = usuarios[clave];
+
+    if(valor === "" || valor === null || valor === undefined){
+        lista = [...lista, clave];
+    }
+};
+return console.log(lista);
+};
+
+filtrarCamposVacios(usuarios);
 
 
 
