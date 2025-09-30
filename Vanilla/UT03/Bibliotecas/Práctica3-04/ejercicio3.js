@@ -123,23 +123,57 @@ console.log(`Lista de usuarios con tema claro, mayoría de edad y pais España: 
 const estaVacio = (valor) =>
   valor === null || valor === undefined || (typeof valor === "string" && valor === "");
 
+// Recorre el objeto usuario y devuelve un boolean true si hay huecos vacíos.
+// ¡¡¡ Función con RECURSIVIDAD !!!
+const hayHucosVacios = (usuario) => {
+  for(let clave in usuario) {
+    const valor = usuario[clave]; 
 
+    if(estaVacio(valor)) return true;
 
-
-const filtrarCamposVacios = (usuarios) => {
-let lista = [];
-for (let clave in usuarios){
-
-    let valor = usuarios[clave];
-
-    if(valor === "" || valor === null || valor === undefined){
-        lista = [...lista, clave];
+    if (typeof valor === "object" && valor !== null) {
+      if(hayHucosVacios(valor)) return true; // IMPORTANTE: Usar recursividad con el valor para acceder a los subvalores.
     }
+  }
+  return false;
+}
+
+// Filtra los usuarios con "HayHuecosVacios" recorriendo todo el listado de usuarios.
+let usuariosDatosVacios = (lista) => {
+    let nuevaLista = [];
+    lista.map((usuario) => {
+        if(hayHucosVacios(usuario)){
+            nuevaLista = [...nuevaLista, usuario];
+        }
+    }
+    );
+    return nuevaLista; // Te imprime el listado de los usuarios con algún dato vacío.
+}
+
+// Impresión de lista
+console.log("Lista de usuarios con algún campo vacío:");
+console.log(usuariosDatosVacios(nuevaLista));
+
+
+
+
+//----------------------------------------------------------------------------------------
+// Punto 6:
+// una penúltima función que añada una nueva clave apellidos a todos los usuarios (el valor por defecto será “No indicado”).
+
+const anadirApellidos = (lista, porDefecto = "No indicado") => {
+  const nueva = lista.map((usuario) => {
+    const apellidos = usuario.apellidos ? usuario.apellidos : porDefecto;
+    return { ...usuario, apellidos };
+  });
+  return nueva;
 };
-return console.log(lista);
-};
 
-filtrarCamposVacios(usuarios);
+// Uso:
+const listaConApellidos = anadirApellidos(nuevaLista);
 
+// Muestra el ARRAY (no lo metas en template literal para evitar [object Object])
+console.log("Lista de usuarios con apellidos:", listaConApellidos);
 
-
+// Si quieres verlo “bonito” como JSON:
+console.log(JSON.stringify(listaConApellidos, null, 1));
