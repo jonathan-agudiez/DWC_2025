@@ -25,7 +25,7 @@ El contenido de esas funciones se debe mostrar por consola debidamente formatead
 
 // Punto 1: 
 
-// Esto se podría configurar con un formulario (inputs). De momento registro el usuario de forma manual a través de los parametros.
+// Esto se podría configurar con un formulario (inputs). De momento registro el usuario de forma manual a través de los argumentos.
 function registrarUsuario (nombre, tema, idioma, edad, calle, localidad, pais, correo, telefono){
     const nuevoUsuario = {
         nombre: nombre,
@@ -159,21 +159,60 @@ console.log(usuariosDatosVacios(nuevaLista));
 
 //----------------------------------------------------------------------------------------
 // Punto 6:
-// una penúltima función que añada una nueva clave apellidos a todos los usuarios (el valor por defecto será “No indicado”).
 
-const anadirApellidos = (lista, porDefecto = "No indicado") => {
-  const nueva = lista.map((usuario) => {
-    const apellidos = usuario.apellidos ? usuario.apellidos : porDefecto;
-    return { ...usuario, apellidos };
+const anadirApellidos = (lista) => {
+
+  // Se crea una lista nueva para no modificar la original.
+  let listaNueva = [];
+
+  // Recorre el usuario y detecta si tiene clave apellidos.
+  lista.map((usuario) => {
+    let apellidos = "No indicado";
+
+    if (  // Si existe un valor en apellidos respeta el apellido.
+      usuario.apellidos !== undefined &&
+      usuario.apellidos !== null &&
+      usuario.apellidos !== ""
+    ) {
+      apellidos = usuario.apellidos; 
+    }
+    // Se crea un nuevo usuario con apellidos.
+    listaNueva = [...listaNueva, { ...usuario, apellidos }];
   });
-  return nueva;
+
+  return listaNueva;
 };
 
-// Uso:
+
+// Añadir apellido sin modificar la lista original:
 const listaConApellidos = anadirApellidos(nuevaLista);
 
-// Muestra el ARRAY (no lo metas en template literal para evitar [object Object])
-console.log("Lista de usuarios con apellidos:", listaConApellidos);
-
-// Si quieres verlo “bonito” como JSON:
+console.log("Lista de usuarios con apellidos:");
+// Se formatea el json con 1 espacio indentado.
 console.log(JSON.stringify(listaConApellidos, null, 1));
+
+
+
+//----------------------------------------------------------------------------------------
+// Punto 7:
+/* y una última función que permita añadir una nueva entrada a direccion denominada codigo cuyo valor por defecto será “00000”.
+El contenido de esas funciones se debe mostrar por consola debidamente formateado. */
+
+const anadirCodigo = (lista) => {
+  let nuevaLista = [];
+  let codigo = "00000";
+  
+  lista.map((usuario) =>{
+    nuevaLista = [...nuevaLista, { ...usuario, contacto: { ...usuario.contacto, direccion: {...usuario.contacto.direccion, codigo,}}}];    
+    // He usado chatGPT para poder anidar varios scopes ya que no sabía muy bien como resolver el ejercicio. Quería evitar modificar el array original.
+  });
+  return nuevaLista;
+};
+
+
+// Añadir codigo sin modificar la lista original:
+const listaConCodigo = anadirCodigo(nuevaLista);
+
+console.log("Lista de usuarios con el código introducido:");
+// Se formatea el json con 1 espacio indentado.
+console.log(JSON.stringify(listaConCodigo, null, 1));
