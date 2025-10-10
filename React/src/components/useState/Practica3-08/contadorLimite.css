@@ -1,0 +1,101 @@
+/*CSS hecho con IA */
+
+.contador-card {
+  max-width: 360px;
+  margin: 30px auto;
+  padding: 24px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  text-align: center;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contador-card h2 {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  color: #111827;
+}
+
+/* Valor del contador */
+.valor {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  margin: 1rem 0 1.75rem;   /* ↑ aumenta separación inferior respecto a los botones */
+  color: #111827;
+  
+}
+
+
+/* Contenedor de botones */
+.botones {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 34px;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+/* Botones rectangulares y texto perfectamente centrado */
+button {
+  display: inline-flex;            /* centra contenido */
+  align-items: center;             /* vertical */
+  justify-content: center;         /* horizontal */
+  padding: 10px 22px;
+  min-width: 140px;
+  height: 44px;
+  border-radius: 8px;              /* menos circular */
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1;                  /* evita desajustes verticales del texto */
+  letter-spacing: 0.2px;
+  background: #111827;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.08s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover:not(:disabled) { transform: translateY(-1px); opacity: 0.95; }
+button:active:not(:disabled) { transform: translateY(0); }
+button:focus-visible {
+  outline: 3px solid #93c5fd;
+  outline-offset: 2px;
+}
+
+/* Colores */
+.btn-incrementar { background-color: #16a34a; } /* verde */
+.btn-decrementar { background-color: #dc2626; } /* rojo */
+
+/* Estado deshabilitado */
+button:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+  opacity: 0.9;
+}
+
+/* Mensaje de límite */
+.mensaje {
+  margin-top: 25px;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  color: #374151;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+.contador-card .valor {
+  font-size: 5rem;      /* prueba con px para comprobar cambio */
+  font-weight: 700;
+  line-height: 1.1;
+  color: #111827;
+}

@@ -1,0 +1,98 @@
+/* Estructura general */
+.matricula {
+  max-width: 1100px;
+  margin: 32px auto;
+  padding: 16px;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Cabecera */
+.matricula h2 {
+  margin: 0 0 14px 0;
+  font-size: 1.6rem;
+  color: #111827;
+}
+
+/* Barra de acciones (usa tu <button> global) */
+.btn-wrapper {
+  display: flex;
+  flex-wrap:wrap;
+  gap: 20px;
+  margin: 40px 0 40px 0;
+  width: 100%;
+}
+
+/* Variantes de color para acciones (respetando tu botón base) */
+.btn-primero { background-color: #1d4ed8; flex-grow: 1; height: 50px;}    /* azul */
+.btn-2daw   { background-color: #0ea5e9; flex-grow: 1; height: 50px;}    /* celeste */
+.btn-daw    { background-color: #7c3aed; flex-grow: 1; height: 50px;}    /* morado */
+.btn-lectura   { background-color: #16a34a; flex-grow: 1; height: 50px;}    /* verde (coherente con incrementar) */
+.btn-orden  { background-color: #815624; flex-grow: 1; height: 50px;}    /* gris oscuro, como tu base */
+.btn-reset  { background-color: #dc2626; flex-grow: 1;height: 50px;}    /* rojo (coherente con decrementar) }
+
+/* Grid de tarjetas de discentes */
+.listado {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+  margin-top: 30px;
+}
+
+/* Tarjeta de discente (coherente con .contador-card) */
+.discente-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Título del discente */
+.discente-card h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #111827;
+}
+
+/* Fichas de datos */
+.discente-meta {
+  display: grid;
+  gap: 4px;
+  color: #374151;
+  font-size: 0.95rem;
+}
+
+
+/* Aficiones como lista con viñetas sutiles */
+.aficiones {
+  margin: 6px 0 0 0;
+  padding-left: 18px;
+  color: #374151;
+  font-size: 0.95rem;
+}
+.aficiones li { margin: 2px 0; }
+
+/* Botón desmatricular dentro de la tarjeta (apoya tu estilo global) */
+.discente-card .btn-desmatricular {
+  align-self: center;
+  margin-top: 15px;
+  background-color: #268adc; /* rojo, coherente */
+  padding: 12px 15px 12px 15px;
+  height: auto;
+  width: auto;
+  font-size: 0.8rem;
+  font-weight: 300;
+  letter-spacing: 0.15rem;
+}
+
+/* Mensaje vacío */
+.vacio {
+  text-align: center;
+  padding: 24px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  color: #374151;
+}

@@ -1,0 +1,64 @@
+/* CSS creado con IA */
+
+.listado-card {
+  max-width: 520px;
+  margin: 24px auto;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+.listado-card h2 {
+  margin: 0 0 8px;
+  font-size: 1.25rem;
+}
+
+.descripcion {
+  color: #475569;
+  margin: 0 0 12px;
+  line-height: 1.5;
+}
+
+.acciones {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  margin-bottom: 25px;
+}
+
+.acciones button{
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  color: white;
+  cursor: pointer;
+}
+
+.generar{
+    background: #03b467;
+}
+
+.eliminar{
+    background: #ff3636;
+}
+
+
+.lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+}
+
+.lista li {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 10px;
+  text-align: center;
+  background: #fafafa;
+}
