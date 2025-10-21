@@ -1,0 +1,40 @@
+/* CSS hecho con IA */
+
+body {
+  font-family: "Poppins", Arial, sans-serif;
+  background: linear-gradient(135deg, #f6f7fb, #e9ecf3);
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+
+p {
+  width: 250px;
+  height: 70px;
+  border-radius: 12px;
+  background-color: white;
+  text-align: center;
+  line-height: 70px;
+  margin: 10px 0;
+  font-size: 18px;
+  font-weight: 500;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+
+p:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(108, 99, 255, 0.25);
+}
+
+
+p[style] {
+  transition: background-color 0.6s ease;
+}

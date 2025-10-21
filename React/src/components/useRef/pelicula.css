@@ -1,0 +1,305 @@
+/* Estilos hechos con IA */
+
+/* === VARIABLES GLOBALES === */
+:root {
+  /* Lavanda */
+  --lav-50:  #f5f3ff;
+  --lav-100: #ede9fe;
+  --lav-200: #ddd6fe;
+  --lav-300: #c4b5fd;
+  --lav-700: #6d28d9;
+
+  /* Grises elegantes */
+  --ink-900: #0f172a;
+  --ink-800: #1e1b4b;
+  --ink-700: #334155;
+  --ink-600: #475569;
+  --ink-500: #64748b;
+
+  /* Tipografía */
+  --font-ui: 'Inter', 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+
+  /* Ritmo vertical */
+  --rhythm-1: .25rem;
+  --rhythm-2: .5rem;
+  --rhythm-3: .75rem;
+  --rhythm-4: 1rem;
+  --radius: .75rem;
+}
+
+/* === ESTRUCTURA PRINCIPAL === */
+.pelicula {
+  max-width: 800px;
+  display: grid;
+  grid-template-columns: 200px 1fr;   
+  grid-template-areas:
+    "poster info"
+    "acciones acciones"  
+    "elenco elenco";      
+  gap: 1rem;
+  padding: 1.2rem 1.8rem;
+  border: 1px solid #e5e7eb;
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, var(--lav-50) 0%, #ffffff 100%);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  font-family: var(--font-ui);
+  color: var(--ink-800);
+}
+
+/* === IMAGEN === */
+.peliculaImagen {
+  grid-area: poster;
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  border-radius: var(--radius);
+  object-fit: cover;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0,0,0,.06);
+}
+
+/* === INFO PRINCIPAL === */
+.peliculaInfo {
+  grid-area: info;
+  min-width: 0;
+}
+
+/* Título */
+.peliculaNombre {
+  margin: 0 0 var(--rhythm-2) 0;
+  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: .01em;
+  color: var(--ink-900);
+  text-shadow: 0 1px 0 rgba(255,255,255,.6);
+}
+
+/* Director */
+.peliculaDirector {
+  margin: 0 0 var(--rhythm-2) 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink-700);
+}
+
+/* Resumen */
+.peliculaResumen {
+  margin: var(--rhythm-2) 0 0 0;
+  font-size: .98rem;
+  line-height: 1.6;
+  letter-spacing: .01em;
+  color: var(--ink-600);
+}
+
+/* Enlace (cartela) */
+.peliculaCartela {
+  display: inline-block;
+  margin-top: var(--rhythm-1);
+  font-size: .95rem;
+  color: var(--lav-700);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--lav-200);
+  padding-bottom: 1px;
+  transition: color .2s ease, border-color .2s ease;
+}
+.peliculaCartela:hover {
+  color: #5b21b6;
+  border-color: var(--lav-300);
+}
+.peliculaCartela:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(109,40,217,.25);
+  border-color: transparent;
+}
+
+/* === SECCIÓN DE BOTONES Y TAQUILLA === */
+.peliculaAcciones {
+  grid-area: acciones;
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;    
+  align-items: stretch;
+  gap: 3rem;
+  margin-top: 1rem;
+  padding: 1rem 0;
+  height: 100px;
+  border-top: 1px solid rgba(148,163,184,.25);
+}
+
+/* Botones */
+.peliculaBotones {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  height: 100%;
+  justify-items: start;
+}
+
+/* --- Botón base --- */
+.peliculaBotones button {
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-800);
+  border: none;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Luz en hover */
+.peliculaBotones button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255,255,255,0.25), transparent);
+  transform: skewX(-25deg);
+  transition: left 0.5s ease;
+}
+.peliculaBotones button:hover::before {
+  left: 125%;
+}
+.peliculaBotones button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  filter: brightness(1.05);
+}
+.peliculaBotones button:active {
+  transform: translateY(1px);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.15);
+}
+
+/* --- Elenco (lavanda) --- */
+.btnElenco {
+  background: linear-gradient(135deg, var(--lav-50), var(--lav-200));
+  border: 1px solid var(--lav-200);
+}
+.btnElenco:hover {
+  background: linear-gradient(135deg, var(--lav-100), var(--lav-200));
+}
+.btnElenco:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(139,92,246,0.35), 0 2px 5px rgba(0,0,0,0.08);
+}
+
+/* --- Taquilla (rosa suave) --- */
+.btnTaquilla {
+  background: linear-gradient(135deg, #ffe4e6, #fecaca);
+  border: 1px solid #fecaca;
+}
+.btnTaquilla:hover {
+  background: linear-gradient(135deg, #ffd1d6, #fca5a5);
+}
+.btnTaquilla:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(244,114,182,0.35), 0 2px 5px rgba(0,0,0,0.08);
+}
+
+/* === INFO TAQUILLA === */
+.peliculaTaquilla {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f9fafb;
+  border: 1px dashed #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 0.97rem;
+  color: var(--ink-700);
+  height: 100%;
+}
+.peliculaTaquilla p {
+  margin: 0;
+}
+
+/* === ELENCO === */
+.peliculaElenco {
+  grid-area: elenco;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin-top: var(--rhythm-3);
+  padding: .5rem;
+  background: linear-gradient(180deg, rgba(0,0,0,0.02), transparent);
+  border: 1px dashed #e5e7eb;
+  border-radius: .5rem;
+}
+.peliculaElenco::-webkit-scrollbar { width: 8px; }
+.peliculaElenco::-webkit-scrollbar-thumb {
+  background: var(--lav-200);
+  border-radius: 8px;
+}
+.peliculaElenco::-webkit-scrollbar-track { background: transparent; }
+
+/* Cada intérprete */
+.peliculaElenco .interprete {
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, var(--lav-50), #fff);
+  border: 1px solid #ede9fe;
+  box-shadow: 0 1px 3px rgba(0,0,0,.04);
+  padding: .75rem .9rem;
+}
+.peliculaElenco .interpreteNombre,
+.peliculaElenco .interprete h4 {
+  margin: 0 0 .3rem 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink-900);
+  letter-spacing: .01em;
+}
+.peliculaElenco .interpreteDescripcion,
+.peliculaElenco .interprete p {
+  margin: 0;
+  font-size: .95rem;
+  line-height: 1.55;
+  color: var(--ink-600);
+}
+
+/* 💰 Estilo limpio y elegante para el dinero de taquilla */
+.peliculaTaquilla p {
+  margin: 0;
+  font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;         /* 🔹 Más grande para destacar */
+  color: #3b0764;             /* Lavanda profundo elegante */
+  letter-spacing: 0.015em;
+  text-align: center;
+  line-height: 1.2;
+
+  /* Espaciado para respirar mejor dentro del bloque */
+  padding: 0.3rem 0;
+
+  /* Transición suave solo en color o tamaño */
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+/* Pequeño énfasis al pasar el ratón (sin efectos visuales) */
+.peliculaTaquilla p:hover {
+  color: #581c87;             /* tono lavanda más intenso */
+  transform: scale(1.02);     /* sutil agrandado para indicar interacción */
+}
+
+
+
+
+/* === CLASES AUXILIARES === */
+.oculto {
+  display: none;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 600px) {
+  .peliculaBotones {
+    grid-template-columns: 1fr;
+  }
+}

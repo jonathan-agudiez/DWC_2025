@@ -1,19 +1,18 @@
 import React from "react";
-import Contenedor from "../ejercicio1/Contenedor.jsx"; // Reutilizo el codigo Contenedor
-import Interprete from "../ejercicio2/Interprete.jsx";
-import Pelicula from "./Pelicula.jsx";
+import PeliculaContenedor from "../components/useRef/PeliculaContenedor.jsx";
+import Interprete from "../components/useRef/Interprete.jsx";
+import Pelicula from "../components/useRef/Pelicula.jsx";
 
-import dieHard from "../../assets/img/die-hard.jpg";  // Importo las imagenes de assets en vez de de Public
-import Bruce from "../../assets/img/Bruce_Willis.jpg";
-import Alan from "../../assets/img/Alan_Rickman.webp";
+import dieHard from "../assets/img/die-hard.jpg";  // Importo las imagenes de assets en vez de de Public
+import Bruce from "../assets/img/Bruce_Willis.jpg";
+import Alan from "../assets/img/Alan_Rickman.webp";
 
 
-function Ejercicio3(){
+function PeliculasPage(){
 
     return (
         <>
-        <h1>Ejercicio 3</h1>
-        <Contenedor>
+        <PeliculaContenedor>
             <Pelicula
                 titulo="Jungla de Cristal"
                 img={dieHard}
@@ -34,9 +33,9 @@ function Ejercicio3(){
                 El mejor final boss de los 90.
                 </Interprete>
             </Pelicula>
-        </Contenedor>
+        </PeliculaContenedor>
         </>
     );
 }
 
-export default Ejercicio3;
+export default PeliculasPage;

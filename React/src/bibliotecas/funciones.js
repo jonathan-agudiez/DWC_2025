@@ -103,6 +103,19 @@ const generarNumeroAleatorio = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
+
+// Usa Intl.NumberFormat para mostrar cantidades en formato monetario europeo (EUR), es igual que toLocaleString (la que suelo usar) pero esta es más eficiente y reutilizable (según la IA consultada).
+const formatearEuros= (cantidad) => {
+  if (typeof cantidad !== "number" || isNaN(cantidad)) return "—";
+
+  return new Intl.NumberFormat("es-ES", {
+    style: "currency",
+    currency: "EUR",
+    minimumFractionDigits: 2,
+  }).format(cantidad);
+};
+
+
 export {
   generarNombreAleatorio,
   generarApellidosAleatorio,
@@ -110,4 +123,5 @@ export {
   generarUuidAleatorio,
   generarNumeroAleatorio,
   generarFrutaAleatorio,
+  formatearEuros
 };
