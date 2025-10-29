@@ -1,17 +1,25 @@
 import React from "react";
 import "./interprete.css";
 
-function Interprete({ nombre, img, children }) {
+
+function Interprete({ nombre, img, fechaNacimiento, biografia, children }) {
   return (
     <article className="interprete">
       <img
-        className="interpreteImagen"      
+        className="interpreteImagen"
         src={img}
-        alt={`Foto de ${nombre}`}
+        alt={nombre}
       />
+
       <div className="interpreteTexto">
         <h3 className="interpreteNombre">{nombre}</h3>
-        <p className="interpreteDescr">{children}</p>     {/* Usamos Children */}
+
+        {/* Fecha de nacimiento */}
+        <p className="interpreteFecha"> Nacimiento: {fechaNacimiento}</p>
+
+        {/* Descripción */}
+        <p className="interpreteDescr">{biografia}</p>
+
       </div>
     </article>
   );

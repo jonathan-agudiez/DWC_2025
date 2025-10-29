@@ -1,0 +1,19 @@
+.page { display: grid; place-items: center; height: calc(100vh - 70px); padding: var(--space-4); }
+
+.errorCard {
+  text-align: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: var(--space-6);
+  max-width: 560px;
+}
+
+.code {
+  display: inline-block;
+  font-weight: 800;
+  font-size: clamp(2rem, 6vw, 3rem);
+  color: var(--primary);
+  margin-bottom: var(--space-2);
+}

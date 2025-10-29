@@ -1,0 +1,36 @@
+:root {
+  /* si ya tienes tokens en index.css, puedes omitir esta línea aquí */
+  --footer-h: 64px; /* ajusta a tu gusto */
+}
+
+.footer {
+  position: fixed;         /* ⬅️ fijo */
+  left: 0;
+  right: 0;
+  bottom: 0;               /* ⬅️ pegado abajo */
+  height: var(--footer-h); /* ⬅️ altura fija */
+  display: flex;
+  align-items: center;
+
+  margin-top: var(--space-6);
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -3px 10px rgba(0,0,0,0.05);
+  z-index: 40;             /* por encima del contenido, por debajo de la navbar si esta tiene 50 */
+}
+
+.footer-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--space-5) var(--space-4);
+  display: grid;
+  gap: var(--space-3);
+  align-items: center;
+  text-align: center;
+
+  /* asegura altura mínima para centrar contenido verticalmente */
+  min-height: var(--footer-h);
+}
+
+/* el resto de tus reglas (footer-brand, footer-links, etc.) pueden quedarse tal cual */

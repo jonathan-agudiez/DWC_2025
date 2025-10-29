@@ -1,0 +1,191 @@
+/* === Reset global === */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* === Tipografía y fondo general === */
+body {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* === Variables de diseño === */
+:root {
+  --bg: #f7f7f9;
+  --surface: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+
+  --primary: #0b5ed7;
+  --primary-600: #0a53be;
+  --primary-50: #e7f0ff;
+
+  --border: #e5e7eb;
+  --shadow: 0 6px 22px rgba(0,0,0,.07);
+
+  --radius: 14px;
+  --space-1: .5rem;
+  --space-2: .75rem;
+  --space-3: 1rem;
+  --space-4: 1.25rem;
+  --space-5: 1.75rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+
+  --footer-h: 64px; 
+}
+
+/* === Layout general (footer fijo abajo) === */
+.layout {
+  min-height: 100svh;      /* ocupa toda la ventana visible */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Contenido principal */
+.layout-main {
+  flex: 1;
+  padding: 1rem;
+  /* evita que el footer fijo tape contenido */
+  padding-bottom: calc(var(--footer-h) + 12px);
+}
+
+/* === Elementos comunes === */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: var(--space-4);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: var(--space-5);
+}
+
+.h1 {
+  font-size: clamp(1.6rem, 2.5vw, 2rem);
+  margin: 0 0 var(--space-3);
+}
+
+.p-muted {
+  color: var(--muted);
+}
+
+/* === Botones === */
+.btn {
+  border: 1px solid transparent;
+  padding: .55rem .9rem;
+  border-radius: 10px;
+  background: var(--primary);
+  color: #fff;
+  cursor: pointer;
+  transition: transform .08s ease, box-shadow .2s ease, background .2s ease;
+  box-shadow: 0 2px 10px rgba(11,94,215,.15);
+}
+.btn:hover {
+  background: var(--primary-600);
+  transform: translateY(-1px);
+}
+.btn:active {
+  transform: translateY(0);
+}
+
+/* === Enlaces === */
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* === Footer base (fijo abajo) === */
+.footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--footer-h);
+  display: flex;
+  align-items: center;
+
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -3px 10px rgba(0,0,0,0.05);
+  z-index: 40;
+}
+
+.footer-container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* === Alturas declarativas (navbar + footer) === */
+:root {
+  --navbar-h: 64px; /* ajusta si tu navbar es más alta/baja */
+}
+
+/* Asegura altura visual del header (tu navbar) */
+.navbar { min-height: var(--navbar-h); }
+
+/* === Sección centrada en viewport "útil" (sin tapar navbar ni footer) === */
+.section-viewport {
+  min-block-size: calc(100svh - var(--footer-h) - var(--navbar-h));
+  display: grid;
+  place-items: center;              /* centra en X e Y */
+  padding-block: var(--space-4);    /* respiración vertical suave */
+}
+
+/* === Pila elegante (espaciado consistente y centrado) === */
+.stack {
+  display: grid;
+  gap: var(--space-4);              /* separaciones equilibradas */
+  justify-items: center;            /* centra hijos en X */
+  text-align: center;               /* títulos + textos centrados */
+  width: 100%;
+  max-width: 900px;                 /* columna cómoda de lectura */
+}
+
+/* Ajustes finos de títulos/listas cuando hay poco contenido */
+.stack > .h1 { margin-bottom: var(--space-2); }
+.stack > .p-muted { margin-top: 0; }
+
+/* Listas de elementos en columna, centradas y sin saltos raros */
+.centered-list {
+  width: 100%;
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Item compacto y elegante (puedes reutilizarlo en Productos) */
+.centered-item {
+  width: min(100%, 720px);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: var(--space-3) var(--space-4);
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

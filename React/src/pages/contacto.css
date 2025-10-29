@@ -1,0 +1,17 @@
+.page { display: grid; gap: var(--space-5); padding-top: var(--space-5); }
+.sectionCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: var(--space-7);
+}
+
+.infoRow {
+  display: grid;
+  gap: .35rem;
+  margin-bottom: var(--space-3);
+}
+.label { font-weight: 600; color: var(--text); }
+.value { color: var(--muted); }
+.btn{ margin-top: 1rem;}

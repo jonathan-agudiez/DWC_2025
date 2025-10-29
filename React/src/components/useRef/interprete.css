@@ -1,32 +1,47 @@
 .interprete {
   display: grid;
   grid-template-columns: 96px 1fr;
-  gap: 2rem;
-  align-items: start;
-  padding: 1.2rem 1.8rem 1.2rem 1.8rem;
+  gap: 1.5rem;
+  align-items: center;              
+  padding: 1.2rem 1.8rem;
+  margin: 0 auto 1rem auto;        
   border: 1px solid #e5e7eb;
   border-radius: 0.75rem;
   background: #fff;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  max-width: 700px;                
+  width: 100%;                
 }
 
-.contenedor > * + * { /* Afecta a todos los hijos siguientes, al primero no */
-  margin-top: 1rem; /* Es mejor en ".contenedor" por si el componente interprete se reusara en otro sitio con diferente margin */
-}
-
-.interpreteImagen {       /*  */
+.interpreteImagen {
   width: 96px;
   height: 96px;
-  border-radius: 50px;
+  border-radius: 50%;             
   object-fit: cover;
+  display: block;
+  margin: 0 auto;                  
+}
+
+.interpreteTexto {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;          
 }
 
 .interpreteNombre {
   margin: 0 0 0.25rem 0;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 600;
   color: #111827;
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.interpreteFecha {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #4b5563;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .interpreteDescr {
@@ -34,5 +49,22 @@
   line-height: 1.5;
   color: #374151;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .interprete {
+    grid-template-columns: 72px 1fr;
+    max-width: 100%;
+    padding: 1rem;
+  }
+
+  .interpreteImagen {
+    width: 72px;
+    height: 72px;
+  }
+
+  .interpreteNombre {
+    font-size: 1.4rem;
+  }
 }

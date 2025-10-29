@@ -228,7 +228,6 @@
   display: flex;
   flex-direction: column;
   gap: 1.1rem;
-  margin-top: var(--rhythm-3);
   padding: .5rem;
   background: linear-gradient(180deg, rgba(0,0,0,0.02), transparent);
   border: 1px dashed #e5e7eb;

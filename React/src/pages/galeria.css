@@ -1,0 +1,148 @@
+:root {
+  --primary: #0b5ed7;
+}
+
+/* ===== CONTENEDOR PRINCIPAL GALERÍA ===== */
+
+.galeria {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #1f2937;
+}
+
+
+.galeriaTitulo {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  color: #1f2937;
+  text-shadow: 0 1px 1px rgba(255,255,255,0.6);
+}
+
+/* ===== SUBMENÚ ===== */
+
+.galeriaNav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+}
+
+.galeriaLink {
+  text-decoration: none;
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.galeriaLink:hover {
+  color: #084298; /* azul más oscuro */
+  border-color: var(--primary);
+  text-decoration: none;
+}
+
+/* ===== CONTENIDO DE SUBRUTA (OUTLET) ===== */
+
+.galeriaContenido {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  padding: 1rem 1.25rem;
+  margin: 0 auto 2rem auto;
+  max-width: 1100px;
+  font-size: 0.95rem;
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+/* ===== GRID DE CARTELERAS ===== */
+
+/* 👇 3 columnas fijas en escritorio */
+.galeriaGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 por fila */
+  gap: 1.5rem;
+  align-items: start;
+}
+
+/* Responsive:
+   - 2 columnas en pantallas medianas
+   - 1 columna en pantallas pequeñas
+*/
+@media (max-width: 900px) {
+  .galeriaGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .galeriaGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Cada item de la galería */
+.galeriaItem {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+
+  overflow: hidden;
+  padding: 1rem; /* más respiración */
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.galeriaItem:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* Imagen del póster/cartela */
+.galeriaImagen {
+  width: 100%;
+  height: 320px;         /* antes 220px -> ahora más alta/más grande */
+  object-fit: cover;
+  border-radius: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Pie de foto */
+.galeriaPie {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #374151;
+}
+
+.galeriaNombre {
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 0.25rem;
+  font-size: 0.95rem;
+}
+
+.galeriaAnyo {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+/* Texto centradito dentro de Outlet (cuando muestra "por título", etc.) */
+.galeriaBloque {
+  text-align: center;
+}

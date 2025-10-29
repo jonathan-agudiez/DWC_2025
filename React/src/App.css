@@ -1,0 +1,26 @@
+/* ===== RESETEO BASE ===== */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== CONTENEDOR PRINCIPAL ===== */
+.layout {
+  min-height: 100vh;          /* ocupa toda la altura de la pantalla */
+  display: flex;
+  flex-direction: column;     /* Menú arriba, contenido en medio, footer abajo */
+}
+
+/* ===== CONTENIDO PRINCIPAL ===== */
+.layout-main {
+  flex: 1;                    /* se expande para llenar el espacio disponible */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* o center si quieres centrar verticalmente */
+}
+
+/* ===== FOOTER ===== */
+footer {
+  flex-shrink: 0;             /* evita que el footer se encoja */
+}

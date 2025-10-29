@@ -1,0 +1,99 @@
+/* Contenedor centrado en X e Y dentro del viewport útil */
+.products-shell {
+  display: grid;
+  gap: var(--space-3);
+  justify-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+/* Grid 2x3 (centrado). En móviles se adaptará a 1-2 columnas */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 300px));
+  grid-auto-rows: 1fr;
+  gap: var(--space-4);
+  justify-content: center;
+  align-content: center; /* centra verticalmente el bloque de cards dentro de section-viewport */
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+
+
+/* Card elegante */
+.product-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  overflow: hidden;
+  transition: transform .12s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.product-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 26px rgba(0,0,0,.10);
+  border-color: color-mix(in oklab, var(--border) 60%, var(--primary) 40%);
+}
+
+/* Imagen con proporción cuidada */
+.product-media {
+  margin: 0;
+}
+.product-img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 2;       /* recorte elegante y consistente */
+  object-fit: contain;
+}
+
+/* Texto */
+.product-body {
+  padding: var(--space-3) var(--space-4) 0 var(--space-4);
+}
+.product-title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* Acciones */
+.product-actions {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-3);
+  padding-top: var(--space-3);
+}
+
+/* Botón decorativo secundario */
+.btn-ghost {
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid var(--primary-50);
+  box-shadow: none;
+}
+.btn-ghost:hover {
+  background: var(--primary-50);
+  transform: translateY(-1px);
+}
+
+/* Botón de navegación bajo el grid */
+.products-nav {
+  margin-top: var(--space-2);
+}
+
+/* Responsivo: en pantallas medianas, 2 columnas; en móviles, 1 */
+@media (max-width: 900px) {
+  .products-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 560px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+}
