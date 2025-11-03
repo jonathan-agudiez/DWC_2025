@@ -16,7 +16,7 @@ let contadorClicks = 0;
 const crearHexadecimal = () => {
 
     let numero = "#";
-
+    
     for (let i = 0; i < 6; i++){
         numero += letras[Math.floor(Math.random() * letras.length)];
     }
