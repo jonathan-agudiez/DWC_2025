@@ -2,46 +2,51 @@
 
 // Colores disponibles
 const colores = ["black", "white", "red", "green", "blue", "yellow"];
+
+// Selección de elementos
 const lienzo = document.getElementById("lienzo");
 const paletas = document.getElementsByClassName("paleta");
-const borrador = document.getElementsByClassName("borrar-lienzo")[0]; // solo hay uno
+const borrador = document.getElementsByClassName("borrar-lienzo")[0];
+const contenedorColores = document.querySelector(".colores");
 
-let colorActual = colores[0];
+// Estado del pincel
+let colorActual = colores[0]; // negro por defecto
 let pintando = false;
 
-// Crear tabla 60x60
-const tabla = document.createElement("table"); // ← primero creamos la tabla
+// Constantes filas y celdas
+const FILA = 60;
+const CELDA = 100;
 
-for (let i = 0; i < 60; i++) {
-  let fila = document.createElement("tr");
-  for (let j = 0; j < 60; j++) {
-    let celda = document.createElement("td");
-    fila.appendChild(celda); // ← añadimos el nodo, no el texto "celda"
+// Crear tabla 60x60
+const tabla = document.createElement("table");
+for (let i = 0; i < FILA; i++) {
+  const fila = document.createElement("tr");
+  for (let j = 0; j < CELDA; j++) {
+    const celda = document.createElement("td");
+    fila.appendChild(celda);
   }
   tabla.appendChild(fila);
 }
+lienzo.appendChild(tabla);
 
-lienzo.appendChild(tabla); // ← añadimos la tabla completa al lienzo
-
-// Elegir color de la paleta
-for (let i = 0; i < paletas.length; i++) {
-  paletas[i].addEventListener("click", function (evento) {
-    // Si la paleta pulsada es la actual del bucle
+// Delegación: elegir color
+contenedorColores.addEventListener("click", (evento) => {
+  for (let i = 0; i < paletas.length; i++) {
     if (evento.target === paletas[i]) {
       colorActual = colores[i];
+
+      // Quitar active de todas
+      for (let j = 0; j < paletas.length; j++) {
+        paletas[j].classList.remove("active");
+      }
+      // Activar la seleccionada
+      paletas[i].classList.add("active");
+      break;
     }
+  }
+});
 
-    // Quitamos la clase active de todas
-    for (let j = 0; j < paletas.length; j++) {
-      paletas[j].classList.remove("active");
-    }
-
-    // Activamos la paleta seleccionada
-    paletas[i].classList.add("active");
-  });
-}
-
-// Función de pintar
+// Pintar
 const pintar = (celda) => {
   celda.style.background = colorActual;
 };
@@ -54,23 +59,22 @@ lienzo.addEventListener("mousedown", (evento) => {
   }
 });
 
-// Pinta mientras se arrastra
+// Pinta mientras arrastras
 lienzo.addEventListener("mouseover", (evento) => {
   if (pintando && evento.target.tagName === "TD") {
     pintar(evento.target);
   }
 });
 
-// Deja de pintar al soltar el ratón
+// Deja de pintar al soltar
 document.addEventListener("mouseup", () => {
   pintando = false;
 });
 
 // Botón borrar
 borrador.addEventListener("click", () => {
-  // Recorremos todas las celdas
   const celdas = tabla.getElementsByTagName("td");
   for (let i = 0; i < celdas.length; i++) {
-    celdas[i].style.background = "white";
+    celdas[i].style.background = "transparent"; 
   }
 });
