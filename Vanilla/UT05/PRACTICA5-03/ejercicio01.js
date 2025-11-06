@@ -15,9 +15,9 @@ let pintando = false;
 
 // Constantes filas y celdas
 const FILA = 60;
-const CELDA = 100;
+const CELDA = 100; // Por estética hago una tabla rectangular.
 
-// Crear tabla 60x60
+// Se crea la tabla.
 const tabla = document.createElement("table");
 for (let i = 0; i < FILA; i++) {
   const fila = document.createElement("tr");
@@ -29,29 +29,30 @@ for (let i = 0; i < FILA; i++) {
 }
 lienzo.appendChild(tabla);
 
-// Delegación: elegir color
+
+// Elección de paleta de color.
 contenedorColores.addEventListener("click", (evento) => {
   for (let i = 0; i < paletas.length; i++) {
     if (evento.target === paletas[i]) {
       colorActual = colores[i];
 
-      // Quitar active de todas
+      // Quitar active de todas las paletas de color.
       for (let j = 0; j < paletas.length; j++) {
         paletas[j].classList.remove("active");
       }
-      // Activar la seleccionada
+      // Activar la seleccionada.
       paletas[i].classList.add("active");
       break;
     }
   }
 });
 
-// Pintar
+// Función que pinta sobre la celda seleccionada.
 const pintar = (celda) => {
   celda.style.background = colorActual;
 };
 
-// Empieza a pintar al pulsar
+// Empieza a pintar al pulsar.
 lienzo.addEventListener("mousedown", (evento) => {
   if (evento.target.tagName === "TD") {
     pintando = true;
@@ -59,19 +60,19 @@ lienzo.addEventListener("mousedown", (evento) => {
   }
 });
 
-// Pinta mientras arrastras
+// Pinta mientras se arrastra.
 lienzo.addEventListener("mouseover", (evento) => {
   if (pintando && evento.target.tagName === "TD") {
     pintar(evento.target);
   }
 });
 
-// Deja de pintar al soltar
+// Deja de pintar al soltar.
 document.addEventListener("mouseup", () => {
   pintando = false;
 });
 
-// Botón borrar
+// Botón borrar.
 borrador.addEventListener("click", () => {
   const celdas = tabla.getElementsByTagName("td");
   for (let i = 0; i < celdas.length; i++) {
