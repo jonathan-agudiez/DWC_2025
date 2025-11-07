@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica 5-04: Ejercicio 01</title>
+
+    <link rel="stylesheet" href="./ejercicio01.css">
+</head>
+<body>
+
+<section id="zona_con_arrastrar">
+
+    <div id="arrastrables">
+
+        <!-- 8 piezas iniciales -->
+        <div class="arrastrable" id="p1"><img src="./img/1.png"></div>
+        <div class="arrastrable" id="p2"><img src="./img/2.png"></div>
+        <div class="arrastrable" id="p3"><img src="./img/3.png"></div>
+        <div class="arrastrable" id="p4"><img src="./img/4.png"></div>
+        <div class="arrastrable" id="p5"><img src="./img/5.png"></div>
+        <div class="arrastrable" id="p6"><img src="./img/6.png"></div>
+        <div class="arrastrable" id="p7"><img src="./img/7.png"></div>
+        <div class="arrastrable" id="p8"><img src="./img/8.png"></div>
+        <div class="arrastrable" id="p9"><img src="./img/9.png"></div>
+
+    </div>
+
+    <div id="soltables" class="puzzle-stage">
+
+        <!-- Grid → 4 columnas × 3 filas -->
+        <div class="drop-grid" data-grid="1">
+
+            <div class="slot"></div>
+            <div class="slot"></div>
+            <div class="slot"></div>
+            <div class="slot"></div>
+            <div class="slot"></div>
+            <div class="slot"></div>
+            <div class="slot"></div>
+            <div class="slot"></div>
+            <div class="slot"></div>
+        </div>
+    </div>
+
+    <div id="controles">
+        <button id="btn-reiniciar" class="reiniciar-puzzle" aria-label="Reiniciar puzzle">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+            </svg>Reiniciar
+        </button>
+        <div class="resultado"></div>
+    </div>
+
+</section>
+
+<script type="module" src="./ejercicio01.js"></script>
+
+</body>
+</html>

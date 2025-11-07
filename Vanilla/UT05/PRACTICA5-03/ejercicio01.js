@@ -1,8 +1,11 @@
 "use strict";
 
-// Colores disponibles
-const colores = ["black", "white", "red", "green", "blue", "yellow"];
+window.onload = function(){
 
+  
+  // Colores disponibles
+  const colores = ["black", "white", "red", "green", "blue", "yellow"];
+  
 // Selección de elementos
 const lienzo = document.getElementById("lienzo");
 const paletas = document.getElementsByClassName("paleta");
@@ -79,3 +82,5 @@ borrador.addEventListener("click", () => {
     celdas[i].style.background = "transparent"; 
   }
 });
+
+}; 
