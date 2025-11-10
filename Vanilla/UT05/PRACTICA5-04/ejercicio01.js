@@ -42,7 +42,8 @@ window.onload = () => {
     }, false);
 
     contenedorInferior.addEventListener("dragstart", (e) => {
-
+        // Mi intención es que arrastre el div .arrastrable + la imagen.
+        
         // Si empieza el arrastre sobre la IMG
         if (e.target.classList.contains("imagen")) {
             e.dataTransfer.setData("id", e.target.parentElement.id);

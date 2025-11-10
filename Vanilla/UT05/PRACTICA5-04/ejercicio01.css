@@ -1,7 +1,4 @@
-/* ==========================================================================
-   Drag & Drop — 2 grids (cada uno 4x2), sin huecos, efecto puzzle
-   CSS DEPURADO
-   ========================================================================== */
+/* CSS de IA */
 
 :root{
   --bg: #f6f7fb;
@@ -21,6 +18,7 @@
 
   --piece-height: 92px;
   --piece-width: 163px;
+  --panel-width: max-content; /* el ancho real del panel */
 }
 
 @media (prefers-color-scheme: dark){
@@ -72,8 +70,25 @@ body{
 
 /* ================== Panel de piezas (arrastrables) ================== */
 #arrastrables{
-  width: max-content;
-  --panel-width: max-content; /* el ancho real del panel */
+/* === helpers para el cálculo === */
+  --panel-cols: 3;
+  --panel-rows: 3;
+  --panel-gap: calc(var(--gap) * 0.5);  /* ya usado como gap del grid */
+  --panel-pad: calc(var(--gap) * 0.9);  /* ya usado como padding */
+
+  /* ancho mínimo ≈ 3 piezas + 2 gaps + padding + 2px borde */
+  min-width: calc(
+    (var(--piece-width) * var(--panel-cols)) +
+    (var(--panel-gap) * (var(--panel-cols) - 1)) +
+    (var(--panel-pad) * 2) + 2px
+  );
+
+  /* altura mínima ≈ 3 filas + 2 gaps + padding + 2px borde */
+  min-height: calc(
+    (var(--piece-height) * var(--panel-rows)) +
+    (var(--panel-gap) * (var(--panel-rows) - 1)) +
+    (var(--panel-pad) * 2) + 2px
+  );
   background: var(--card);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
@@ -97,10 +112,10 @@ body{
 
 /* Piezas en el PANEL: “caja bonita” */
 #arrastrables .arrastrable{
+  width: var(--piece-width);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: auto;
   height: auto;
   margin: 0;
   padding: 0;
@@ -116,8 +131,8 @@ body{
 #arrastrables .arrastrable:focus-visible{ box-shadow: 0 0 0 3px var(--brand-weak), var(--shadow); }
 
 #arrastrables .arrastrable img{
-  height: var(--piece-size);
-  width: auto;                /* mantiene proporción */
+  width: 100%;
+  height: auto;   /* mantener proporción */
   object-fit: contain;
   pointer-events: none;
   border-radius: inherit;
@@ -133,9 +148,6 @@ body{
   opacity: .96;
 }
 
-.img-arrastrable{
-
-}
 
 
 /* ================== STAGE con 2 GRIDS (PUZZLE) ================== */
@@ -340,6 +352,12 @@ body{
     align-items: center;
   }
   .resultado{ width: 100%; }
+
+  #arrastrables{
+    grid-template-columns: repeat(3, 1fr);
+    min-width: 0;
+    min-height: 0;
+  }
 }
 
 
