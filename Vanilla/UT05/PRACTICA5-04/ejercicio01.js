@@ -12,7 +12,7 @@ window.onload = () => {
     // Aquí se almacena la constante de botón de "Reiniciar"
     const btnReiniciar = document.getElementById("btn-reiniciar");
 
-    // Constante necesaria para almacenar el orden de los div/imagenes y emplearlo luego al darle al botón "Reiniciar".
+    // Array necesario para almacenar el orden de los div/imagenes y emplearlo luego al darle al botón "Reiniciar".
     const ordenInicial = [];
 
     // Damos setAttribute a los elementos arrastrables.
@@ -152,19 +152,22 @@ window.onload = () => {
     }, false);
 
 
-
+    // Botón Reiniciar
     btnReiniciar.addEventListener("click", (e) => {
         e.preventDefault();
 
-        // Devolver cada pieza a su contenedor superior en el orden original
+        // Se devuelve cada pieza a su contenedor superior en el orden original.
+        // En el inicio del código tenemos el array ordenInicial.
         for (let i = 0; i < ordenInicial.length; i++) {
+
             const pieza = document.getElementById(ordenInicial[i]);
+
             if (pieza) {
                 contenedorSuperior.appendChild(pieza);
             }
         }
 
-        // Limpiar resultado
+        // Se limpia el div resultado.
         resultado.textContent = "";
         resultado.classList.remove("ok", "mal");
     }, false);
