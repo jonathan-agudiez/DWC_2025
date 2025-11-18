@@ -10,7 +10,7 @@ import {
 
 window.onload = () => {
 
-  // --- CAPTURA DE ELEMENTOS DEL DOM ---
+  // Se identifican los elementos del DOM.
   const form = document.getElementById("formDisco");
   const inputNombre = document.getElementById("nombre");
   const inputCaratula = document.getElementById("caratula");
@@ -24,15 +24,14 @@ window.onload = () => {
   const btnGuardar = document.getElementById("btn-guardar");
   const btnMostrar = document.getElementById("btn-mostrar");
 
-  const rejillaDiscos = document.getElementById("rejilla-discos");
+  const gridDiscos = document.getElementById("grid-discos");
   const listadoVacio = document.getElementById("listado-vacio");
 
-  // --- COLECCIÓN (OBJETO JSON) ---
-  let coleccion = {
-    discos: []
-  };
+    // Se crea un objeto para JSON.
+  let coleccion = { discos: [] };
 
-  // --- FUNCIÓN AUXILIAR: OBTENER DATOS DEL FORMULARIO ---
+
+  // Se obtienen los datos del formulario.
   const obtenerDatosFormulario = () => {
     return {
       nombre: inputNombre.value,
@@ -45,12 +44,7 @@ window.onload = () => {
     };
   };
 
-  // =====================================================
-  //  VALIDACIÓN EN VIVO Y GUARDADO (PARTE "DE USUARIO")
-  // =====================================================
-
-  // --- VALIDACIÓN EN VIVO (EVENTOS input/change) ---
-
+  // Se validan los inputs/change.
   inputNombre.addEventListener("input", () => {
     const estado = obtenerEstadoValidacion(obtenerDatosFormulario());
     mostrarError(inputNombre, estado.nombre);
@@ -77,78 +71,69 @@ window.onload = () => {
   });
 
 
-    // --- BOTÓN GUARDAR (AÑADIR DISCO A LA COLECCIÓN) ---
-
-    btnGuardar.addEventListener("click", (e) => {
-    e.preventDefault();  // ⬅️ IMPORTANTE
+  // Botón Guardar (se añade disco a coleccion).
+  btnGuardar.addEventListener("click", (e) => {
+    e.preventDefault();
 
     const datos = obtenerDatosFormulario();
     const estado = obtenerEstadoValidacion(datos);
     const esValido = validarFormulario(estado);
 
-    // marcar errores en inputs
+    // Se muestran los errores de cada input.
     mostrarError(inputNombre, estado.nombre);
     mostrarError(inputGrupo, estado.grupo);
     mostrarError(inputAnio, estado.anio);
     mostrarError(selectGenero, estado.genero);
     mostrarError(inputLocalizacion, estado.localizacion);
 
-    // mostrar mensajes en contenedor
+    // Se imprimen los mensajes de error con formato correcto.
     const mensajes = obtenerMensajesError(estado);
 
     if (mensajes.length > 0) {
-        let texto = "";
-        for (let i = 0; i < mensajes.length; i++) {
+      let texto = "";
+      for (let i = 0; i < mensajes.length; i++) {
         texto += mensajes[i] + "<br>";
-        }
-        contErrores.innerHTML = texto;
-        contErrores.classList.add("activo");
+      }
+      contErrores.innerHTML = texto;
+      contErrores.classList.add("activo");
     } else {
-        contErrores.innerHTML = "";
-        contErrores.classList.remove("activo");
+      contErrores.innerHTML = "";
+      contErrores.classList.remove("activo");
     }
 
-    // si no es válido, no guardamos nada
-    if (!esValido) {
-        return;
-    }
-
-    // crear disco y añadirlo a la colección
-    const nuevoDisco = crearDisco(datos);
-    coleccion = {
+    // Solo si el formulario es válido, se guardan y se limpia el form.
+    if (esValido) {
+      // Se crea disco y se añade a la colección.
+      const nuevoDisco = crearDisco(datos);
+      coleccion = {
         discos: [...coleccion.discos, nuevoDisco]
-    };
+      };
 
-    // limpiar formulario y errores visuales
-    form.reset();
-    inputNombre.classList.remove("campo-error");
-    inputGrupo.classList.remove("campo-error");
-    inputAnio.classList.remove("campo-error");
-    selectGenero.classList.remove("campo-error");
-    inputLocalizacion.classList.remove("campo-error");
-    contErrores.innerHTML = "";
-    contErrores.classList.remove("activo");
+      // Se limpia el formulario y estilos de error.
+      form.reset();
+      inputNombre.classList.remove("campo-error");
+      inputGrupo.classList.remove("campo-error");
+      inputAnio.classList.remove("campo-error");
+      selectGenero.classList.remove("campo-error");
+      inputLocalizacion.classList.remove("campo-error");
+      contErrores.innerHTML = "";
+      contErrores.classList.remove("activo");
 
-    // actualizar mensaje "no hay discos"
-    if (coleccion.discos.length > 0) {
-        listadoVacio.style.display = "none";
+      // Se actualiza el mensaje "no hay discos" (que está en html). 
+      actualizarMensajeVacio();
     }
-    });
+  });
 
 
-  // ============================================
-  //  RENDER DE LA COLECCIÓN (TARJETAS DE DISCOS)
-  // ============================================
-
-  // --- FUNCIÓN: CREAR UNA TARJETA DOM PARA UN DISCO ---
-
+  
+  // Esta función la generé con ayuda de IA por la complejidad del CSS.
+  // Crea el elemento card con el contenido del disco.
   const crearTarjetaDisco = (disco) => {
     const tarjeta = document.createElement("article");
     tarjeta.className = "tarjeta-disco";
 
     const img = document.createElement("img");
     img.src = disco.caratula || "";
-    img.alt = "Carátula de " + disco.nombre;
     tarjeta.appendChild(img);
 
     const cuerpo = document.createElement("div");
@@ -165,56 +150,61 @@ window.onload = () => {
     grupo.textContent = disco.grupo;
     cuerpo.appendChild(grupo);
 
-    const badges = document.createElement("div");
-    badges.className = "badges";
-    cuerpo.appendChild(badges);
+    // Contenedor de etiquetas
+    const etiquetas = document.createElement("div");
+    etiquetas.className = "etiquetas";
+    cuerpo.appendChild(etiquetas);
 
-    const badgeGenero = document.createElement("span");
-    badgeGenero.className = "badge";
-    badgeGenero.textContent = disco.genero;
-    badges.appendChild(badgeGenero);
+    const etiquetaGenero = document.createElement("span");
+    etiquetaGenero.className = "etiqueta";
+    etiquetaGenero.textContent = disco.genero;
+    etiquetas.appendChild(etiquetaGenero);
 
-    const badgeAnio = document.createElement("span");
-    badgeAnio.className = "badge";
-    badgeAnio.textContent = "Año: " + disco.anio;
-    badges.appendChild(badgeAnio);
+    const etiquetaAnio = document.createElement("span");
+    etiquetaAnio.className = "etiqueta";
+    etiquetaAnio.textContent = "Año: " + disco.anio;
+    etiquetas.appendChild(etiquetaAnio);
 
-    const badgeLocalizacion = document.createElement("span");
-    badgeLocalizacion.className = "badge";
-    badgeLocalizacion.textContent = "Ubicación: " + disco.localizacion;
-    badges.appendChild(badgeLocalizacion);
+    const etiquetaLocalizacion = document.createElement("span");
+    etiquetaLocalizacion.className = "etiqueta";
+    etiquetaLocalizacion.textContent = "Ubicación: " + disco.localizacion;
+    etiquetas.appendChild(etiquetaLocalizacion);
 
     if (disco.prestado) {
-      const badgePrestado = document.createElement("span");
-      badgePrestado.className = "badge badge-prestado";
-      badgePrestado.textContent = "Prestado";
-      badges.appendChild(badgePrestado);
+      const etiquetaPrestado = document.createElement("span");
+      etiquetaPrestado.className = "etiqueta etiqueta-prestado";
+      etiquetaPrestado.textContent = "Prestado";
+      etiquetas.appendChild(etiquetaPrestado);
     }
 
     return tarjeta;
   };
 
-  // --- FUNCIÓN: RENDERIZAR TODA LA COLECCIÓN EN LA REJILLA ---
-
-  const renderizarColeccion = () => {
-    rejillaDiscos.innerHTML = "";
-
-    if (coleccion.discos.length === 0) {
-      listadoVacio.style.display = "block";
-      return;
-    }
-
-    listadoVacio.style.display = "none";
-
-    for (let i = 0; i < coleccion.discos.length; i++) {
-      const disco = coleccion.discos[i];
-      const tarjeta = crearTarjetaDisco(disco);
-      rejillaDiscos.appendChild(tarjeta);
+  // Actualiza el mensaje "no hay discos" usando la clase .oculto
+  const actualizarMensajeVacio = () => {
+    if (coleccion.discos.length > 0) {
+      listadoVacio.classList.add("oculto");
+    } else {
+      listadoVacio.classList.remove("oculto");
     }
   };
 
-  // --- BOTÓN MOSTRAR (PINTAR LA COLECCIÓN) ---
 
+  const renderizarColeccion = () => {
+    gridDiscos.innerHTML = "";
+
+    actualizarMensajeVacio();
+
+    // Añadimos el contenido a cada tarjeta y agregamos cada tarjeta al grid de discos.
+    for (let i = 0; i < coleccion.discos.length; i++) {
+      const disco = coleccion.discos[i];
+      const tarjeta = crearTarjetaDisco(disco);
+      gridDiscos.appendChild(tarjeta);
+    }
+  };
+
+
+  //Botón de mostrar.
   btnMostrar.addEventListener("click", () => {
     renderizarColeccion();
   });

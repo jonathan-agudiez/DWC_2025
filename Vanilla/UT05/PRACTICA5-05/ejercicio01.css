@@ -286,7 +286,7 @@ select:focus {
   color: #6b7280;
 }
 
-.rejilla-discos {
+.grid-discos {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
   gap: 1rem;
@@ -333,13 +333,13 @@ select:focus {
   font-style: italic;
 }
 
-.badges {
+.etiquetas {
   display: flex;
   flex-wrap: wrap;
   gap: 0.25rem;
 }
 
-.badge {
+.etiqueta {
   border-radius: 999px;
   padding: 0.05rem 0.45rem;
   font-size: 0.7rem;
@@ -347,7 +347,7 @@ select:focus {
   border: 1px solid #d1d5db;
 }
 
-.badge-prestado {
+.etiqueta-prestado {
   border-color: #fb923c;
   background: #ffedd5;
   color: #9a3412;
@@ -375,6 +375,10 @@ select:focus {
 
 .btn-eliminar:hover {
   background: #fecaca;
+}
+
+.oculto {
+    display: none;
 }
 
 /* ---------- RESPONSIVE ---------- */
