@@ -117,6 +117,13 @@ select:focus {
   background-color: #fef2f2 !important;
 }
 
+.campo-error:focus {
+  border-color: #ef4444 !important;   /* mismo rojo del error */
+  box-shadow: none !important;        /* quita el azul */
+  background-color: #fef2f2 !important;
+}
+
+
 .fila {
   display: flex;
   gap: 0.75rem;
@@ -139,7 +146,7 @@ select:focus {
 }
 
 /* ---------- MENSAJE DE ERRORES ---------- */
-#mensaje-errores {
+.mensaje-errores {
   margin-top: 0.25rem;
   padding: 0.6rem 0.75rem;
   border-radius: 0.7rem;
@@ -147,17 +154,19 @@ select:focus {
   display: none;
 }
 
-#mensaje-errores.activo {
+.mensaje-errores.activo {
   display: block;
   background: #fef2f2;
   border: 1px solid #fecaca;
   color: #991b1b;
 }
 
-#mensaje-errores ul {
+.mensaje-errores ul {
   padding-left: 1.1rem;
   margin: 0.2rem 0 0;
 }
+
+
 
 /* ---------- BOTONES GENERALES ---------- */
 .botones-form {
