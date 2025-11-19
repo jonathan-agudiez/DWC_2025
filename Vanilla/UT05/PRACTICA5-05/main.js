@@ -20,6 +20,7 @@ window.onload = () => {
   const inputLocalizacion = document.getElementById("localizacion");
   const checkboxPrestado = document.getElementById("prestado");
   const contErrores = document.getElementById("mensajeErrores");
+  const mensajeExito = document.querySelector(".mensaje-exito");
 
   const btnGuardar = document.getElementById("btn-guardar");
   const btnMostrar = document.getElementById("btn-mostrar");
@@ -27,8 +28,28 @@ window.onload = () => {
   const gridDiscos = document.getElementById("grid-discos");
   const listadoVacio = document.getElementById("listado-vacio");
 
+  const inputBuscador = document.getElementById("buscador");
+  const btnBuscar = document.getElementById("btn-buscar");
+  const btnLimpiar = document.getElementById("btn-limpiar");
+
+
     // Se crea un objeto para JSON.
   let coleccion = { discos: [] };
+
+  // Guarda la colección actual en localStorage
+  const guardarEnLocalStorage = () => {
+    localStorage.setItem("coleccionDiscos", JSON.stringify(coleccion));
+  };
+
+  // Carga la colección desde localStorage si existe
+  const cargarDesdeLocalStorage = () => {
+    const datos = localStorage.getItem("coleccionDiscos");
+
+    if (datos) {
+      coleccion = JSON.parse(datos);
+    }
+  };
+
 
 
   // Se obtienen los datos del formulario.
@@ -103,11 +124,19 @@ window.onload = () => {
 
     // Solo si el formulario es válido, se guardan y se limpia el form.
     if (esValido) {
-      // Se crea disco y se añade a la colección.
+
       const nuevoDisco = crearDisco(datos);
-      coleccion = {
-        discos: [...coleccion.discos, nuevoDisco]
-      };
+
+      // Para evitar reseteo de id al recargar la página, se calcula el siguiente id en base a los discos existentes.
+      const siguienteId = coleccion.discos.length > 0 
+      ? Math.max(...coleccion.discos.map(d => d.id || 0)) + 1 : 1;
+
+    // Se asigna el id correlativo al nuevo disco.
+      nuevoDisco.id = siguienteId;
+
+
+      coleccion = { discos: [...coleccion.discos, nuevoDisco] };
+      guardarEnLocalStorage();
 
       // Se limpia el formulario y estilos de error.
       form.reset();
@@ -121,9 +150,22 @@ window.onload = () => {
 
       // Se actualiza el mensaje "no hay discos" (que está en html). 
       actualizarMensajeVacio();
+
+      // SE muestra solo si el formulario es correcto.
+        mensajeExito.classList.remove("oculto");
+      } else {
+        mensajeExito.classList.add("oculto");
+      }
+    }
+  );
+
+
+  // Si hacemos focus en input o select se oculta el mensaje de "Guardado correctamente".
+  form.addEventListener("focusin", (e) => {
+    if (e.target.matches("input, select, textarea")) {
+      mensajeExito.classList.add("oculto");
     }
   });
-
 
   
   // Esta función la generé con ayuda de IA por la complejidad del CSS.
@@ -177,8 +219,25 @@ window.onload = () => {
       etiquetas.appendChild(etiquetaPrestado);
     }
 
+    // Footer con botón eliminar
+    const footer = document.createElement("div");
+    footer.className = "tarjeta-footer";
+
+    const info = document.createElement("span");
+    info.textContent = `ID: ${disco.id}`;
+    footer.appendChild(info);
+
+    const btnEliminar = document.createElement("button");
+    btnEliminar.className = "btn-eliminar";
+    btnEliminar.textContent = "Eliminar";
+    btnEliminar.dataset.id = disco.id;  
+
+    footer.appendChild(btnEliminar);
+    tarjeta.appendChild(footer);
+
     return tarjeta;
   };
+
 
   // Actualiza el mensaje "no hay discos" usando la clase .oculto
   const actualizarMensajeVacio = () => {
@@ -203,10 +262,92 @@ window.onload = () => {
     }
   };
 
+  // Se cargan datos del localStorage y se pinta el listado al inicio.
+  cargarDesdeLocalStorage();
+  renderizarColeccion();
 
   //Botón de mostrar.
   btnMostrar.addEventListener("click", () => {
     renderizarColeccion();
   });
+
+  
+  const filtrarColeccion = (texto) => {
+
+    // Le quitamos espacios (trim()) y lo ponemos en minusculas
+    const termino = texto.trim().toLowerCase();
+
+    // Si hay texto se filtra, si no se usa la colección completa.
+    const discosFiltrados =
+      termino === "" ? coleccion.discos : coleccion.discos.filter((disco) => 
+        {
+          const nombre = disco.nombre.toLowerCase();
+          const grupo = disco.grupo.toLowerCase();
+          return nombre.includes(termino) || grupo.includes(termino);
+        });
+
+    // Se limpia el grid, pero NO se toca listadoVacio (la colección existe).
+    gridDiscos.innerHTML = "";
+
+    if (discosFiltrados.length === 0) {
+      const mensaje = document.createElement("p");
+      mensaje.textContent = "No hay discos que coincidan con la búsqueda.";
+      gridDiscos.appendChild(mensaje);
+    } else {
+      // Si hay resultados, se pintan.
+      discosFiltrados.forEach(disco => {
+        const tarjeta = crearTarjetaDisco(disco);
+        gridDiscos.appendChild(tarjeta);
+      });
+    }
+  };
+
+    // Botón Buscar: filtra por nombre o grupo
+  btnBuscar.addEventListener("click", () => {
+    filtrarColeccion(inputBuscador.value);
+  });
+
+  // Permitir pulsar Enter en el input del buscador
+  inputBuscador.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      filtrarColeccion(inputBuscador.value);
+    }
+  });
+
+  // Botón Limpiar: borra el texto y vuelve al listado original
+  btnLimpiar.addEventListener("click", () => {
+    inputBuscador.value = "";
+    renderizarColeccion();
+  });
+
+
+  gridDiscos.addEventListener("click", (e) => {
+
+    // Se obtiene el elemento sobre el que se hizo clic
+    const btn = e.target;
+
+    if (btn.classList.contains("btn-eliminar")) {
+
+      // Se obtiene el id del disco asociado al botón (almacenado en el atributo html data-id).
+      const id = Number(btn.dataset.id);
+
+      // Se busca dentro de la colección el disco con dicho id.
+      const disco = coleccion.discos.find(d => d.id === id);
+
+      if (disco) {
+        const confirmado = window.confirm(
+          `¿Seguro que deseas eliminar "${disco.nombre}" de la colección?`
+        );
+
+        if (confirmado) {
+          coleccion.discos = coleccion.discos.filter(d => d.id !== id);
+          guardarEnLocalStorage();
+          renderizarColeccion();
+        }
+      }
+    }
+  });
+
 
 };

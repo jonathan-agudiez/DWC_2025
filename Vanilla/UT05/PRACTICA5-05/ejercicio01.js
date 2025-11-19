@@ -1,7 +1,8 @@
 "use strict";
 
-// --- VALIDADORES (solo devuelven true/false) ---
+let idDisco = 0;
 
+// Validadores
 const validarNombre = (valor) =>
   /^[A-Za-zÁÉÍÓÚÜáéíóúüÑñ0-9][A-Za-zÁÉÍÓÚÜáéíóúüÑñ0-9\s\-\.'’&/]{2,}$/.test(valor);
 
@@ -17,8 +18,8 @@ const validarSelect = (valor) =>
 const validarLocalizacion = (valor) =>
   /^ES-[\d]{3}[A-Z]{2}$/.test(valor);
 
-// --- OBTENER ESTADO DE VALIDACIÓN (NO toca DOM) ---
 
+// Se obtiene el estado de la validación
 const obtenerEstadoValidacion = (datos) => {
   return {
     nombre: validarNombre(datos.nombre),
@@ -29,8 +30,7 @@ const obtenerEstadoValidacion = (datos) => {
   };
 };
 
-// --- VALIDACIÓN GLOBAL DEL FORMULARIO ---
-
+// Se valida el formulario completo, si es true, pasamos a la siguiente fase.
 const validarFormulario = (estado) => {
   return (
     estado.nombre &&
@@ -41,8 +41,7 @@ const validarFormulario = (estado) => {
   );
 };
 
-// --- GENERAR MENSAJES DE ERROR (sin tocar DOM) ---
-
+// Si un validador es false se añade el mensaje al array mensajes.
 const obtenerMensajesError = (estado) => {
   let mensajes = [];
 
@@ -65,8 +64,12 @@ const obtenerMensajesError = (estado) => {
   return mensajes;
 };
 
+// Se añaden los datos al JSON
 const crearDisco = (datos) => {
+  idDisco++;
+  
   return {
+    id: idDisco,
     nombre: datos.nombre,
     caratula: datos.caratula,           
     grupo: datos.grupo,
