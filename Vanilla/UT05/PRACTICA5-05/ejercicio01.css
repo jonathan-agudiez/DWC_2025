@@ -307,6 +307,7 @@ select:focus {
 }
 
 .tarjeta-disco {
+  position: relative;
   border-radius: 0.95rem;
   border: 1px solid rgba(226, 232, 240, 0.9);
   overflow: hidden;
@@ -348,22 +349,42 @@ select:focus {
 
 .etiquetas {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 0.25rem;
 }
 
 .etiqueta {
+  flex: 0 0 auto;
   border-radius: 999px;
   padding: 0.05rem 0.45rem;
   font-size: 0.7rem;
   background: #ffffff;
+  text-align: center;
   border: 1px solid #d1d5db;
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.etiquetas span:nth-child(3) {
+  flex: 1 1 auto;
+  min-width: 0;      
 }
 
 .etiqueta-prestado {
-  border-color: #fb923c;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+
+  padding: 0.15rem 0.55rem;
+  font-size: 0.7rem;
+  border-radius: 999px;
+
   background: #ffedd5;
+  border: 1px solid #fb923c;
   color: #9a3412;
+
+  white-space: nowrap;
+  z-index: 10; 
 }
 
 .tarjeta-footer {
