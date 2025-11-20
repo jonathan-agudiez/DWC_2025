@@ -3,6 +3,9 @@
 import { mostrarError } from "./Bibliotecas/principal.js";
 import { obtenerEstadoValidacion, manejarGuardarDisco } from "./ejercicio01.js";
 import { renderizarColeccion, filtrarColeccion } from "./uiDiscos.js";
+import { cargarDesdeLocalStorage, guardarEnLocalStorage } from "./almacenamiento.js";
+
+
 
 window.onload = () => {
   
@@ -31,21 +34,8 @@ window.onload = () => {
 
  
   // Se crea un objeto para JSON.
-  let coleccion = { discos: [] };
-
-  // Se guarda la colección actual en localStorage.
-  const guardarEnLocalStorage = () => {
-    localStorage.setItem("coleccionDiscos", JSON.stringify(coleccion));
-  };
-
-  // Se carga la colección desde localStorage si existe.
-  const cargarDesdeLocalStorage = () => {
-    const datos = localStorage.getItem("coleccionDiscos");
-
-    if (datos) {
-      coleccion = JSON.parse(datos);
-    }
-  };
+  let coleccion = cargarDesdeLocalStorage();
+  renderizarColeccion(coleccion, gridDiscos, listadoVacio);
 
 
   // Se obtienen los datos del formulario.
@@ -87,11 +77,6 @@ window.onload = () => {
     const estado = obtenerEstadoValidacion(obtenerDatosFormulario());
     mostrarError(inputLocalizacion, estado.localizacion);
   });
-
-
-  // Aquí se carga inicialmente el LocalStorage.
-  cargarDesdeLocalStorage();
-  renderizarColeccion(coleccion, gridDiscos, listadoVacio);
 
 
     // LISTENERS
@@ -158,7 +143,7 @@ window.onload = () => {
 
         if (confirmado) {
           coleccion.discos = coleccion.discos.filter((d) => d.id !== id);
-          guardarEnLocalStorage();
+          guardarEnLocalStorage(coleccion);
           renderizarColeccion(coleccion, gridDiscos, listadoVacio);
         }
       }

@@ -8,12 +8,8 @@ const guardarEnLocalStorage = (coleccion) => {
 // Se carga la colección desde localStorage si existe
 const cargarDesdeLocalStorage = () => {
   const datos = localStorage.getItem("coleccionDiscos");
-
-  if (datos) {
-    return JSON.parse(datos);
-  }
-
-  return { discos: [] };
+  return datos ? JSON.parse(datos) : { discos: [] };
 };
+
 
 export { guardarEnLocalStorage, cargarDesdeLocalStorage };
