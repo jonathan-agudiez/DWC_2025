@@ -1,0 +1,18 @@
+.administracion-elementomenu{
+    display: inline;
+    margin: 10px;
+    padding: 10px;
+    border: solid rgb(94, 94, 221) 1px;
+    color: rgb(20, 4, 236);
+    border-radius: 5px;
+}
+
+.administracion-elementomenu:hover {
+    background-color: rgb(94, 94, 221);
+    color:rgb(255, 255, 255);
+    cursor: pointer;    
+}
+
+.administracion-navegacion{
+    padding: 20px;
+}

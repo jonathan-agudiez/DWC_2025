@@ -1,0 +1,8 @@
+.contenedor_contenedor {
+    padding: 10px;
+        margin: 10px;
+        border: solid rgb(139, 139, 139) 1px;
+        /*  width: 500px; */
+        /* height: 150px; */
+        width: auto;
+}

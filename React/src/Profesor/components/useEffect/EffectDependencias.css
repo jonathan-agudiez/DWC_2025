@@ -1,0 +1,10 @@
+.effectDependencias-vegetales{
+    display: flex;
+    justify-content: center;
+    margin: 15px;
+}
+
+.effectDependencias-vegetales div{
+    margin: 10px;
+    padding: 15px;
+}

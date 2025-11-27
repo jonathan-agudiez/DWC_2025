@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Enciclopedia de Star Wars</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="ejercicio01.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- CONTENEDOR PRINCIPAL -->
+    <div class="app__inner">
+      <!-- COLUMNA IZQUIERDA: LISTADO DE PELÍCULAS -->
+      <aside class="sidebar" aria-label="Listado de películas">
+        <header class="sidebar__header">
+          <h1 class="sidebar__title">Enciclopedia Star&nbsp;Wars</h1>
+          <p class="sidebar__subtitle">Películas</p>
+        </header>
+
+        <section class="sidebar__content">
+          <ul id="film-list" class="film-list">
+            <!-- JS: aquí se insertarán los <li> con las películas -->
+            <!-- Ejemplo de estructura de cada elemento:
+            <li class="film-item" data-film-id="1">
+              <span class="film-item__id">I</span>
+              <span class="film-item__title">The Phantom Menace</span>
+            </li>
+            -->
+          </ul>
+        </section>
+      </aside>
+
+      <!-- COLUMNA DERECHA: INFORMACIÓN DE LA PELÍCULA SELECCIONADA -->
+      <main class="panel" aria-live="polite">
+        <section class="panel__section panel__section--info">
+          <header class="panel__header">
+            <h2 class="panel__title">Información</h2>
+            <p id="film-title" class="panel__film-title">
+              Selecciona una película de la lista
+            </p>
+          </header>
+
+          <article class="panel__content">
+            <h3 class="panel__subtitle">Sinopsis</h3>
+            <p id="film-opening" class="panel__text">
+              Cuando elijas una película, aquí aparecerá el texto de apertura.
+            </p>
+          </article>
+        </section>
+
+        <section class="panel__section panel__section--details">
+          <header class="panel__header panel__header--compact">
+            <h3 class="panel__subtitle">Datos de la película</h3>
+          </header>
+
+          <article class="panel__content">
+            <dl class="film-data">
+              <div class="film-data__row">
+                <dt>Director</dt>
+                <dd id="film-director">—</dd>
+              </div>
+              <div class="film-data__row">
+                <dt>Productor/es</dt>
+                <dd id="film-producer">—</dd>
+              </div>
+              <div class="film-data__row">
+                <dt>Fecha de lanzamiento</dt>
+                <dd id="film-release-date">—</dd>
+              </div>
+            </dl>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <footer class="app-footer">
+      <p>Datos obtenidos de <a href="https://swapi.info/api" target="_blank" rel="noopener noreferrer">The Star Wars API</a></p>
+    </footer>
+  </div>
+
+  
+  <script type="module" src="main.js"></script> 
+</body>
+</html>

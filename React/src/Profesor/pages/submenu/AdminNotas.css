@@ -1,0 +1,18 @@
+.adminNotas-elementomenu{
+    display: inline;
+    margin: 10px;
+    padding: 10px;
+    border: solid rgb(71, 1, 1) 1px;
+    color: rgb(236, 4, 4);
+    border-radius: 5px;
+}
+
+.adminNotas-elementomenu:hover {
+    background-color: rgb(94, 94, 221);
+    color:rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+.adminNotas-navegacion{
+    padding: 20px;
+}

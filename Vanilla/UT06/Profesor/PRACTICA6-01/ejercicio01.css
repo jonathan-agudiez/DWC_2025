@@ -1,0 +1,330 @@
+/* =========================
+   VARIABLES & RESETEO BÁSICO
+   ========================= */
+
+:root {
+  --color-bg: #050814;
+  --color-bg-panel: #101626;
+  --color-bg-panel-alt: #121927;
+  --color-border-main: #ff7b2c;
+  --color-border-sidebar: #b13ad6;
+  --color-border-title: #39d467;
+  --color-accent: #ffe81f;          /* amarillo Star Wars */
+  --color-text-main: #f5f5f5;
+  --color-text-muted: #a7b0c6;
+  --color-text-strong: #ffffff;
+  --color-divider: #23293a;
+
+  --radius-lg: 1rem;
+  --radius-md: .75rem;
+  --radius-sm: .5rem;
+
+  --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.65);
+
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+/* Reset muy ligero */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background: radial-gradient(circle at top, #10141f 0, #02030a 55%, #000 100%);
+  color: var(--color-text-main);
+}
+
+/* =========================
+   LAYOUT GENERAL
+   ========================= */
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+.app__inner {
+  display: grid;
+  grid-template-columns: minmax(240px, 280px) minmax(0, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1100px;
+  background: rgba(3, 5, 18, 0.9);
+  border: 2px solid var(--color-border-main);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  padding: 1.25rem;
+}
+
+/* =========================
+   SIDEBAR (LISTA DE PELÍCULAS)
+   ========================= */
+
+.sidebar {
+  border: 2px solid var(--color-border-sidebar);
+  border-radius: var(--radius-md);
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(
+    135deg,
+    rgba(58, 27, 82, 0.7),
+    rgba(11, 9, 26, 0.9)
+  );
+}
+
+.sidebar__header {
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  padding-bottom: 0.5rem;
+}
+
+.sidebar__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin: 0 0 0.15rem;
+}
+
+.sidebar__subtitle {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.sidebar__content {
+  flex: 1;
+  margin-top: 0.35rem;
+  overflow: hidden;
+}
+
+.film-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+/* Scrollbar webkit */
+.film-list::-webkit-scrollbar {
+  width: 6px;
+}
+.film-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+.film-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+}
+
+.film-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.5rem 0.55rem;
+  margin-bottom: 0.15rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background 0.18s ease, transform 0.12s ease, box-shadow 0.18s ease;
+  border: 1px solid transparent;
+}
+
+.film-item__id {
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.12rem 0.4rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.film-item__title {
+  font-size: 0.9rem;
+}
+
+.film-item:hover {
+  background: rgba(0, 0, 0, 0.32);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.5);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.film-item--active {
+  background: rgba(0, 0, 0, 0.65);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 1px rgba(255, 232, 31, 0.4);
+}
+
+/* =========================
+   PANEL DE INFORMACIÓN
+   ========================= */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.panel__section {
+  background: var(--color-bg-panel);
+  border: 2px solid #11151f;
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+}
+
+.panel__section--info {
+  border-color: var(--color-border-title);
+}
+
+.panel__section--details {
+  border-color: #ffffff;
+}
+
+.panel__header {
+  border-bottom: 1px solid var(--color-divider);
+  margin: -0.35rem -0.6rem 0.6rem;
+  padding: 0.35rem 0.6rem 0.55rem;
+}
+
+.panel__header--compact {
+  margin-top: 0;
+}
+
+.panel__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.panel__film-title {
+  margin: 0.4rem 0 0;
+  padding: 0.35rem 0.6rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border-title);
+  background: var(--color-bg-panel-alt);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #b7ffb5;
+}
+
+.panel__content {
+  font-size: 0.92rem;
+}
+
+.panel__subtitle {
+  margin: 0 0 0.4rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.panel__text {
+  margin: 0;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+/* =========================
+   FICHA DE DATOS
+   ========================= */
+
+.film-data {
+  margin: 0;
+}
+
+.film-data__row {
+  display: grid;
+  grid-template-columns: minmax(110px, 150px) minmax(0, 1fr);
+  gap: 0.75rem;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.film-data__row:last-child {
+  border-bottom: none;
+}
+
+.film-data dt {
+  font-weight: 600;
+  color: var(--color-text-strong);
+}
+
+.film-data dd {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+
+.app-footer {
+  width: 100%;
+  max-width: 1100px;
+  margin-top: 0.75rem;
+  text-align: right;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.app-footer a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.app-footer a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 800px) {
+  .app {
+    padding: 0.75rem;
+  }
+
+  .app__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    min-height: 220px;
+    max-height: 300px;
+  }
+
+  .panel__section {
+    padding: 0.75rem 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar__title {
+    font-size: 1rem;
+  }
+
+  .panel__film-title {
+    font-size: 0.88rem;
+  }
+}
